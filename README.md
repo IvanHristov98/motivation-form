@@ -1,6 +1,6 @@
 # Motivation form notes
 
-- The entry point is `index.php`.
+- The entry point is `index.html`.
 - It is meant to simulate a RESTful service. I know it is not in the best of ways and that it could be improved. As an example I would've even splitted the fron-end and back-end code bases (despite CORS issues).
 - It uses composer to get an `autoloading mechanism`.
 - Tested against a MariaDB and MySQL instance.
