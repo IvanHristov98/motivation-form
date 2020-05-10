@@ -1,20 +1,25 @@
-<?php namespace form\handler;
+<?php
+
+namespace form\handler;
 
 use form\db\DBConnection;
 use form\db\dto\User;
 use form\img\ImageTool;
 use form\zodiac\Zodiac;
 
-class UserHandler {
+class UserHandler
+{
     const USER_FIELDS = [
         "firstName", "familyName", "facultyNum", "courseYear", "specialty", "groupNum", "dateOfBirth", "link", "motivation"
     ];
+    const VALID_PHOTO_FILE_TYPE = "/^image\/.*/";
 
     private $user;
     private $imageTool;
     private $zodiac;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->user = new User();
         $this->imageTool = new ImageTool();
         $this->zodiac = new Zodiac();
@@ -23,7 +28,8 @@ class UserHandler {
     /**
      * @throws \Exception
      */
-    public function uploadClient() {
+    public function uploadClient()
+    {
         $this->setFields();
         $this->uploadImage();
         $this->user->update();
@@ -35,7 +41,8 @@ class UserHandler {
     /**
      * @throws \Exception
      */
-    private function setFields() {
+    private function setFields()
+    {
         $this->validateFields();
 
         $this->user->setFacultyNum($_POST['facultyNum']);
@@ -63,7 +70,8 @@ class UserHandler {
     /**
      * @throws \Exception
      */
-    private function validateFields() {
+    private function validateFields()
+    {
         for ($i = 0; $i < \count(self::USER_FIELDS); $i++) {
             if (!isset($_POST[self::USER_FIELDS[$i]])) {
                 throw new \Exception("Не всички полета са били попълнени. Липсва " . self::USER_FIELDS[$i] . ".");
@@ -71,13 +79,16 @@ class UserHandler {
         }
     }
 
-    private function uploadImage() {
+    private function uploadImage()
+    {
         if (!$this->isPhotoGiven()) {
             return;
         }
 
         $from = $_FILES["photo"]["tmp_name"];
-        $destDir = "img/student/";
+        $this->validatePhoto($from);
+
+        $destDir = \join(DIRECTORY_SEPARATOR, ['img', 'student', '']);
         $name = $this->user->getPhoto();
 
         $this->imageTool->moveImageIfNotExisting($from, $destDir, $name);
@@ -85,7 +96,8 @@ class UserHandler {
         return $name;
     }
 
-    private function genPhotoName() {
+    private function genPhotoName()
+    {
         if (!$this->isPhotoGiven()) {
             return null;
         }
@@ -93,10 +105,29 @@ class UserHandler {
         $file = $_FILES["photo"]["name"];
         $extension = \strtolower(\pathinfo($file)['extension']);
 
-        return uniqid() . '.' . $extension;
+        return \uniqid() . '.' . $extension;
     }
 
-    private function isPhotoGiven() {
-        return isset($_FILES["photo"]);
+    private function isPhotoGiven()
+    {
+        return \file_exists($_FILES["photo"]["tmp_name"]);
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function validatePhoto($file)
+    {
+        $finfo = \finfo_open(FILEINFO_MIME_TYPE);
+        $type = \finfo_file($finfo, $file);
+        $match = \preg_match(self::VALID_PHOTO_FILE_TYPE, $type, $matches);
+
+        if ($match === false) {
+            throw new \Exception("Възникна грешка при валидиране типа на подадената снимка.");
+        } elseif ($match === 0) {
+            throw new \Exception("Въведеният файл не е от тип изображение.");
+        }
+
+        return;
     }
 }

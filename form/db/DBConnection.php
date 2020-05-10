@@ -1,13 +1,17 @@
-<?php namespace form\db;
+<?php
 
-class DBConnection {
+namespace form\db;
+
+class DBConnection
+{
     private static $dbConnection;
     private static $instance = null;
 
     /**
      * @throws \Exception
      */
-    private function __construct() {
+    private function __construct()
+    {
         $host = 'localhost';
         $port = '3306';
         $db = '62130_Ivan_Hristov';
@@ -25,7 +29,8 @@ class DBConnection {
     /**
      * @throws \Exception
      */
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (!self::$instance) {
             self::$instance = new DBConnection();
         }
@@ -33,7 +38,8 @@ class DBConnection {
         return self::$instance;
     }
 
-    public static function getPDO() {
+    public static function getPDO()
+    {
         return self::$dbConnection;
     }
 }

@@ -1,46 +1,54 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body>
-        <div class="page-wrapper">
-            <div class="card">
-                <h2>Мотивационно писмо</h2><hr/>
-                <form method="POST" action="index.php" enctype="multipart/form-data" id="motivation-from">
-                    <label for="first-name">Лично име*</label>
-                    <input id="first-name" type="text" name="firstName" placeholder="Петкан" maxlength="128" required="required"/>
-                    <label for="family-name">Фамилно име*</label>
-                    <input id="family-name" type="text" name="familyName" placeholder="Петканов" maxlength="128" required="required"/>
-                    <label for="faculty-num">Факултетен номер*</label>
-                    <input id="faculty-num" type="text" name="facultyNum" placeholder="532434" maxlength="32" required="required"/>
-                    <label for="course-year">Година на курса*</label>
-                    <input id="course-year" type="number" name="courseYear" placeholder="2017" required="required"/>
-                    <label for="specialty">Специалност*</label><br/>
-                    <input id="specialty" type="text" name="specialty" placeholder="Софтуерно инженерство" maxlength="128" required="required"/>
-                    <label for="group-num">Номер на група*</label>
-                    <input id="group-num" type="number" name="groupNum" placeholder="1" required="required"/>
-                    <label for="date-of-birth">Дата на раждане</label>
-                    <input id="date-of-birth" type="date" name="dateOfBirth"/>
-                    <p id="zodiac-sign"></p>
-                    <label for="link">Линк</label>
-                    <input id="link" type="text" name="link" placeholder="www.my-site.com" maxlength="512"/>
-                    <label for="photo">Снимка</label>
-                    <input id="photo" type="file" name="photo" accept="image/png, image/jpeg">
-                    <label for="motivation">Мотивация*</label>
-                    <textarea id="motivation" name="motivation" placeholder="Мотивация" required="required"></textarea>
-                    
-                    <button type="submit">Изпрати</button>
-                    <hr/>
-                    <p>Полетата маркирани с * са задължителни.</p>
-                </form>
 
-                <div id="good-info" class="info good-info">dsa</div>
-                <div id="bad-info" class="info bad-info">dsa</div>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <div class="card">
+            <h2>Мотивационно писмо</h2>
+            <hr />
+            <form method="POST" action="index.php" enctype="multipart/form-data" id="motivation-from">
+                <label for="first-name">Лично име*</label>
+                <input id="first-name" type="text" name="firstName" placeholder="Петкан" maxlength="128"
+                    required="required" />
+                <label for="family-name">Фамилно име*</label>
+                <input id="family-name" type="text" name="familyName" placeholder="Петканов" maxlength="128"
+                    required="required" />
+                <label for="faculty-num">Факултетен номер*</label>
+                <input id="faculty-num" type="text" name="facultyNum" placeholder="532434" maxlength="32"
+                    required="required" />
+                <label for="course-year">Година на курса*</label>
+                <input id="course-year" type="number" name="courseYear" placeholder="2017" required="required" />
+                <label for="specialty">Специалност*</label><br />
+                <input id="specialty" type="text" name="specialty" placeholder="Софтуерно инженерство" maxlength="128"
+                    required="required" />
+                <label for="group-num">Номер на група*</label>
+                <input id="group-num" type="number" name="groupNum" placeholder="1" required="required" />
+                <label for="date-of-birth">Дата на раждане</label>
+                <input id="date-of-birth" type="date" name="dateOfBirth" />
+                <p id="zodiac-sign"></p>
+                <label for="link">Линк</label>
+                <input id="link" type="text" name="link" placeholder="www.my-site.com" maxlength="512" />
+                <label for="photo">Снимка</label>
+                <input id="photo" type="file" name="photo" accept="image/png, image/jpeg">
+                <label for="motivation">Мотивация*</label>
+                <textarea id="motivation" name="motivation" placeholder="Мотивация" required="required"></textarea>
+
+                <button type="submit">Изпрати</button>
+                <hr />
+                <p>Полетата маркирани с * са задължителни.</p>
+            </form>
+
+            <div id="good-info" class="info good-info"></div>
+            <div id="bad-info" class="info bad-info"></div>
         </div>
+    </div>
 
-        <script src="js/form.js"></script>
-    </body>
+    <script src="js/form.js"></script>
+</body>
+
 </html>

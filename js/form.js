@@ -1,16 +1,16 @@
 const ZODIAC_SIGNS = [
-    {name: "водолей", fromMonth: 0, fromDate: 20, toMonth: 1, toDate: 19},
-    {name: "риби", fromMonth: 1, fromDate: 20, toMonth: 2, toDate: 20},
-    {name: "овен", fromMonth: 2, fromDate: 21, toMonth: 3, toDate: 20},
-    {name: "телец", fromMonth: 3, fromDate: 21, toMonth: 4, toDate: 20},
-    {name: "близнаци", fromMonth: 4, fromDate: 21, toMonth: 5, toDate: 20},
-    {name: "рак", fromMonth: 5, fromDate: 21, toMonth: 6, toDate: 22},
-    {name: "лъв", fromMonth: 6, fromDate: 21, toMonth: 7, toDate: 22},
-    {name: "дева", fromMonth: 7, fromDate: 23, toMonth: 8, toDate: 22},
-    {name: "везни", fromMonth: 8, fromDate: 23, toMonth: 9, toDate: 22},
-    {name: "скорпион", fromMonth: 9, fromDate: 23, toMonth: 10, toDate: 22},
-    {name: "стрелец", fromMonth: 10, fromDate: 23, toMonth: 11, toDate: 21},
-    {name: "козирог", fromMonth: 11, fromDate: 22, toMonth: 0, toDate: 19},
+    { name: "водолей", fromMonth: 0, fromDate: 20, toMonth: 1, toDate: 19 },
+    { name: "риби", fromMonth: 1, fromDate: 20, toMonth: 2, toDate: 20 },
+    { name: "овен", fromMonth: 2, fromDate: 21, toMonth: 3, toDate: 20 },
+    { name: "телец", fromMonth: 3, fromDate: 21, toMonth: 4, toDate: 20 },
+    { name: "близнаци", fromMonth: 4, fromDate: 21, toMonth: 5, toDate: 20 },
+    { name: "рак", fromMonth: 5, fromDate: 21, toMonth: 6, toDate: 22 },
+    { name: "лъв", fromMonth: 6, fromDate: 21, toMonth: 7, toDate: 22 },
+    { name: "дева", fromMonth: 7, fromDate: 23, toMonth: 8, toDate: 22 },
+    { name: "везни", fromMonth: 8, fromDate: 23, toMonth: 9, toDate: 22 },
+    { name: "скорпион", fromMonth: 9, fromDate: 23, toMonth: 10, toDate: 22 },
+    { name: "стрелец", fromMonth: 10, fromDate: 23, toMonth: 11, toDate: 21 },
+    { name: "козирог", fromMonth: 11, fromDate: 22, toMonth: 0, toDate: 19 },
 ];
 
 function dateToZodiac(date) {
@@ -35,12 +35,12 @@ function setZodiac(text) {
 
 function unsetZodiac() {
     let zodiacSign = document.getElementById("zodiac-sign");
-    zodiacSign.style.display = "none";    
+    zodiacSign.style.display = "none";
 }
 
 unsetZodiac();
 
-document.getElementById("date-of-birth").addEventListener("change", function() {
+document.getElementById("date-of-birth").addEventListener("change", function () {
     let dateOfBirth = new Date(this.value);
     let zodiac = dateToZodiac(dateOfBirth);
 
@@ -53,14 +53,14 @@ document.getElementById("date-of-birth").addEventListener("change", function() {
 
 const photo = document.getElementById("photo");
 const motivationForm = document.getElementById("motivation-from");
-const motivationEndpoint = "index.php";
+const motivationEndpoint = "form.php";
 
 const goodInfo = document.getElementById("good-info");
 const badInfo = document.getElementById("bad-info");
 
-motivationForm.addEventListener("submit", function(e) {
+motivationForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    
+
     let formData = new FormData();
 
     function getInputValue(id) {
@@ -83,7 +83,7 @@ motivationForm.addEventListener("submit", function(e) {
     fetch(motivationEndpoint, {
         method: "post",
         body: formData
-    }).then(function (response){
+    }).then(function (response) {
         if (response.status == 200) {
             goodInfo.style.display = "block";
             badInfo.style.display = "none";
